@@ -1,9 +1,9 @@
-﻿using GenericTemplateAPI.Database.Context;
-using GenericTemplateAPI.Entities.Base;
+﻿using GenericTemplateAPI.API.Context;
+using GenericTemplateAPI.API.Entities.Base;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
-namespace GenericTemplateAPI.Repository
+namespace GenericTemplateAPI.API.Repository
 {
     public class Repository<TEntity, TKey> where TEntity : Entity
     {

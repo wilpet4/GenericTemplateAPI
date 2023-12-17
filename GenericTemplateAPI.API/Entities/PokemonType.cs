@@ -1,6 +1,6 @@
-﻿using GenericTemplateAPI.Entities.Base;
+﻿using GenericTemplateAPI.API.Entities.Base;
 
-namespace GenericTemplateAPI.Entities
+namespace GenericTemplateAPI.API.Entities
 {
     public class PokemonType : Entity
     {

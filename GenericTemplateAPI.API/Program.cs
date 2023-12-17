@@ -1,10 +1,15 @@
-using GenericTemplateAPI.Repository;
+using GenericTemplateAPI.API.Context;
+using GenericTemplateAPI.API.Repository;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+builder.Services.AddDbContext<DatabaseContext>(options =>
+options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped(typeof(Repository<,>), typeof(Repository<,>));
 
