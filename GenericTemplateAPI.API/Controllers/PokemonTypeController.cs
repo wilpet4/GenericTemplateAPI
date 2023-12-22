@@ -7,8 +7,8 @@ namespace GenericTemplateAPI.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PokemonTypeController : ApiController<PokemonType, int>
+    public class PokemonTypeController : ApiController<PokemonType, string>
     {
-        public PokemonTypeController(Repository<PokemonType, int> repository) : base(repository) { }
+        public PokemonTypeController(Repository<PokemonType, string> repository) : base(repository) { }
     }
 }

@@ -1,12 +1,11 @@
 ﻿using GenericTemplateAPI.API.Controllers.Base;
 using GenericTemplateAPI.API.Entities;
 using GenericTemplateAPI.API.Repository;
-using Microsoft.AspNetCore.Mvc;
 
 namespace GenericTemplateAPI.API.Controllers
 {
-    public class PokemonController : ApiController<Pokemon, int>
+    public class EvolutionController : ApiController<Evolution, int>
     {
-        public PokemonController(Repository<Pokemon, int> repository) : base(repository) { }
+        public EvolutionController(Repository<Evolution, int> repository) : base(repository) { }
     }
 }

@@ -1,4 +1,5 @@
 using GenericTemplateAPI.API.Context;
+using GenericTemplateAPI.API.Framework;
 using GenericTemplateAPI.API.Repository;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,6 +19,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+Setup setup = ActivatorUtilities.CreateInstance<Setup>(app.Services.CreateScope().ServiceProvider);
+setup.SetupDatabase();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

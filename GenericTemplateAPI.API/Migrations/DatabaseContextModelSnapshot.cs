@@ -33,12 +33,7 @@ namespace GenericTemplateAPI.API.Migrations
                     b.Property<int>("Level")
                         .HasColumnType("int");
 
-                    b.Property<int?>("PokemonId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("PokemonId");
 
                     b.ToTable("Evolutions");
                 });
@@ -48,44 +43,44 @@ namespace GenericTemplateAPI.API.Migrations
                     b.Property<int>("Id")
                         .HasColumnType("int");
 
+                    b.Property<int?>("EvolutionId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("EvolutionId")
+                        .IsUnique()
+                        .HasFilter("[EvolutionId] IS NOT NULL");
 
                     b.ToTable("Pokemon");
                 });
 
             modelBuilder.Entity("GenericTemplateAPI.API.Entities.PokemonType", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
                     b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int?>("PokemonId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("Name");
 
                     b.HasIndex("PokemonId");
 
                     b.ToTable("PokemonTypes");
                 });
 
-            modelBuilder.Entity("GenericTemplateAPI.API.Entities.Evolution", b =>
+            modelBuilder.Entity("GenericTemplateAPI.API.Entities.Pokemon", b =>
                 {
-                    b.HasOne("GenericTemplateAPI.API.Entities.Pokemon", "Pokemon")
-                        .WithMany()
-                        .HasForeignKey("PokemonId");
+                    b.HasOne("GenericTemplateAPI.API.Entities.Evolution", "Evolution")
+                        .WithOne("Pokemon")
+                        .HasForeignKey("GenericTemplateAPI.API.Entities.Pokemon", "EvolutionId");
 
-                    b.Navigation("Pokemon");
+                    b.Navigation("Evolution");
                 });
 
             modelBuilder.Entity("GenericTemplateAPI.API.Entities.PokemonType", b =>
@@ -93,6 +88,11 @@ namespace GenericTemplateAPI.API.Migrations
                     b.HasOne("GenericTemplateAPI.API.Entities.Pokemon", null)
                         .WithMany("PokemonTypes")
                         .HasForeignKey("PokemonId");
+                });
+
+            modelBuilder.Entity("GenericTemplateAPI.API.Entities.Evolution", b =>
+                {
+                    b.Navigation("Pokemon");
                 });
 
             modelBuilder.Entity("GenericTemplateAPI.API.Entities.Pokemon", b =>

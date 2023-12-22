@@ -1,10 +1,11 @@
 ﻿using GenericTemplateAPI.API.Entities.Base;
+using System.ComponentModel.DataAnnotations;
 
 namespace GenericTemplateAPI.API.Entities
 {
     public class PokemonType : Entity
     {
-        public int Id { get; set; }
+        [Key]
         public string Name { get; set; }
     }
 }
