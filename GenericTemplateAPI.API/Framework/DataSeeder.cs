@@ -216,6 +216,36 @@ namespace GenericTemplateAPI.API.Framework
                     Pokemon = kakuna,
                 },
             };
+            var pidgeot = new Pokemon()
+            {
+                Id = 18,
+                Name = "Pidgeot",
+                PokemonTypes = new List<PokemonType>() { normal, flying },
+                Evolution = null,
+            };
+            var pidgeotto = new Pokemon()
+            {
+                Id = 17,
+                Name = "Pidgeotto",
+                PokemonTypes = new List<PokemonType>() { normal, flying },
+                Evolution = new Evolution()
+                {
+                    Level = 36,
+                    Pokemon = pidgeot,
+                },
+            };
+            var pidgey = new Pokemon()
+            {
+                Id = 16,
+                Name = "Pidgey",
+                PokemonTypes = new List<PokemonType>() { normal, flying },
+                Evolution = new Evolution()
+                {
+                    Level = 18,
+                    Pokemon = pidgeotto,
+                },
+            };
+
 
             var pokemon = new List<Pokemon>() 
             { 
@@ -224,6 +254,7 @@ namespace GenericTemplateAPI.API.Framework
                 squirtle, wartortle, blastoise,
                 caterpie, metapod, butterfree,
                 weedle, kakuna, beedrill,
+                pidgey, pidgeotto, pidgeot
 
             };
             context.Pokemon.AddRange(pokemon);
